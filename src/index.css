@@ -7,73 +7,55 @@
   --font-display: "Playfair Display", serif;
   --font-mono: "Space Grotesk", monospace;
 
-  --color-primary: #991b1b;
-  --color-primary-light: #ef4444;
-  --color-secondary: #ea580c;
-  --color-accent: #f97316;
-  --color-dark: #0a0a0a;
-  --color-dark-lighter: #171717;
+  --color-primary: #10b981;
+  --color-primary-light: #34d399;
+  --color-secondary: #059669;
+  --color-accent: #6ee7b7;
+  --color-light: #ffffff;
+  --color-light-gray: #f9fafb;
   
-  --shadow-glow: 0 0 15px rgba(153, 27, 27, 0.5);
-  --shadow-glow-orange: 0 0 15px rgba(234, 88, 12, 0.5);
+  --shadow-soft: 0 4px 20px rgba(0, 0, 0, 0.05);
 }
 
 @layer base {
   body {
-    @apply bg-dark text-gray-200 antialiased selection:bg-primary selection:text-white;
+    @apply bg-white text-slate-900 antialiased selection:bg-primary/30 selection:text-primary;
     font-family: var(--font-sans);
-    cursor: none;
+    letter-spacing: -0.01em;
+  }
+
+  h1, h2, h3, h4 {
+    @apply tracking-tight font-semibold;
   }
 }
 
 @layer components {
-  .glass {
-    @apply bg-white/5 backdrop-blur-md border border-white/10;
+  .card-fresh {
+    @apply bg-white rounded-2xl border border-slate-100 shadow-soft hover:shadow-xl transition-all duration-300;
   }
   
-  .glow-text {
-    @apply text-white drop-shadow-[0_0_10px_rgba(255,255,255,0.5)];
-  }
-
-  .glow-text-red {
-    @apply text-primary-light drop-shadow-[0_0_10px_rgba(153,27,27,0.8)];
-  }
-
   .btn-primary {
-    @apply px-8 py-3 bg-primary text-white rounded-full font-medium transition-all duration-300 hover:bg-primary-light hover:shadow-glow;
+    @apply px-8 py-3 bg-primary text-white rounded-xl font-medium transition-all duration-300 hover:bg-secondary hover:shadow-lg active:scale-95 disabled:opacity-50;
   }
 
   .section-title {
-    @apply text-4xl md:text-6xl font-display italic mb-8;
+    @apply text-3xl md:text-4xl font-display mb-4 text-slate-900;
+  }
+
+  .meta-label {
+    @apply text-[10px] font-mono uppercase tracking-widest text-primary font-bold mb-1 block;
   }
 }
 
 /* Custom Scrollbar */
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 6px;
 }
 
 ::-webkit-scrollbar-track {
-  @apply bg-dark;
+  @apply bg-slate-50;
 }
 
 ::-webkit-scrollbar-thumb {
-  @apply bg-neutral-800 rounded-full hover:bg-neutral-700 transition-colors;
-}
-
-/* Ambient Dust Particles Animation */
-@keyframes float {
-  0% { transform: translateY(0) translateX(0); opacity: 0; }
-  50% { opacity: 0.5; }
-  100% { transform: translateY(-100vh) translateX(20px); opacity: 0; }
-}
-
-.particle {
-  position: fixed;
-  width: 2px;
-  height: 2px;
-  background: white;
-  pointer-events: none;
-  z-index: 1;
-  animation: float 20s linear infinite;
+  @apply bg-slate-200 rounded-full hover:bg-primary transition-colors;
 }

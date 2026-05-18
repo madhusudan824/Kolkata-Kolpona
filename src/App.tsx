@@ -1,54 +1,73 @@
 import { motion } from 'motion/react';
+import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
+import { useEffect } from 'react';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import About from './components/About';
-import FeaturedStories from './components/FeaturedStories';
+import LatestUpdates from './components/LatestUpdates';
+import Projects from './components/Projects';
+import ProgressTimeline from './components/ProgressTimeline';
 import Team from './components/Team';
-import Gallery from './components/Gallery';
+import Announcements from './components/Announcements';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
-import CustomCursor from './components/ui/CustomCursor';
+import CreditsPage from './components/CreditsPage';
 import LoadingScreen from './components/ui/LoadingScreen';
-import AudioToggle from './components/ui/AudioToggle';
+import MagazinePage from './components/MagazinePage';
+
+function ScrollToHash() {
+  const { hash } = useLocation();
+  useEffect(() => {
+    if (hash) {
+      const id = hash.replace('#', '');
+      const element = document.getElementById(id);
+      if (element) {
+        setTimeout(() => element.scrollIntoView({ behavior: 'smooth' }), 100);
+      }
+    }
+  }, [hash]);
+  return null;
+}
+
+function HomePage() {
+  return (
+    <main>
+      <Hero />
+      <motion.div
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        transition={{ duration: 1 }}
+        className="relative"
+      >
+        <LatestUpdates />
+        <About />
+        <Announcements />
+        <Projects />
+        <ProgressTimeline />
+        <Team />
+        <Contact />
+      </motion.div>
+    </main>
+  );
+}
 
 export default function App() {
   return (
-    <div className="relative min-h-screen bg-dark">
-      <LoadingScreen />
-      <CustomCursor />
-      <AudioToggle />
-      
-      <Navbar />
-      
-      <main>
-        <Hero />
+    <Router>
+      <div className="relative min-h-screen bg-white">
+        <ScrollToHash />
+        <LoadingScreen />
         
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ duration: 1 }}
-          className="relative"
-        >
-          {/* Ambient section transitions can go here */}
-          <About />
-          <FeaturedStories />
-          <Team />
-          <Gallery />
-          <Contact />
-        </motion.div>
-      </main>
+        <Navbar />
+        
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/credits" element={<CreditsPage />} />
+          <Route path="/magazine" element={<MagazinePage />} />
+        </Routes>
 
-      <Footer />
-      
-      {/* Decorative SVG Pattern across the site */}
-      <div className="fixed inset-0 pointer-events-none z-[-1] opacity-[0.03]">
-        <svg width="100%" height="100%">
-          <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
-            <path d="M 40 0 L 0 0 0 40" fill="none" stroke="white" strokeWidth="0.5" />
-          </pattern>
-          <rect width="100%" height="100%" fill="url(#grid)" />
-        </svg>
+        <Footer />
       </div>
-    </div>
+    </Router>
   );
 }

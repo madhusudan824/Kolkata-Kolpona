@@ -1,6 +1,6 @@
 {
   "name": "Kolkata Kolpona",
-  "description": "A modern, cinematic Bengali storytelling and horror podcast platform featuring immersive audio experiences.",
+  "description": "A clean, modern creative storytelling platform for Bengali updates, projects, and community engagement.",
   "requestFramePermissions": [],
   "majorCapabilities": [
     "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"

@@ -14,37 +14,34 @@ export default function LoadingScreen() {
       {isLoading && (
         <motion.div
           id="loading-screen"
-          className="fixed inset-0 z-[10000] bg-dark flex flex-col items-center justify-center"
-          exit={{ opacity: 0, transition: { duration: 0.8 } }}
+          className="fixed inset-0 z-[10000] bg-white flex flex-col items-center justify-center"
+          exit={{ opacity: 0, transition: { duration: 0.5 } }}
         >
           <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 1 }}
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
             className="text-center"
           >
-            <h1 className="text-4xl md:text-6xl font-display italic text-white mb-4 tracking-widest">
+            <h1 className="text-3xl md:text-5xl font-display font-semibold text-slate-900 mb-6 tracking-wide">
               KOLKATA KOLPONA
             </h1>
-            <div className="w-48 h-[1px] bg-neutral-800 mx-auto relative overflow-hidden">
+            <div className="w-32 h-[2px] bg-emerald-50 mx-auto relative overflow-hidden rounded-full">
               <motion.div
                 className="absolute inset-0 bg-primary"
                 initial={{ left: '-100%' }}
                 animate={{ left: '100%' }}
-                transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
+                transition={{ duration: 1.5, repeat: Infinity, ease: 'easeInOut' }}
               />
             </div>
-            <p className="mt-4 text-xs font-mono tracking-[0.3em] text-primary uppercase">
-              Entering the Shadows...
-            </p>
           </motion.div>
         
           <motion.div 
-            className="absolute bottom-10 left-1/2 -translate-x-1/2 text-[10px] text-neutral-600 font-mono"
-            animate={{ opacity: [0.3, 0.6, 0.3] }}
+            className="absolute bottom-10 left-1/2 -translate-x-1/2 text-[10px] text-slate-400 font-mono tracking-widest uppercase font-bengali"
+            animate={{ opacity: [0.4, 0.8, 0.4] }}
             transition={{ duration: 2, repeat: Infinity }}
           >
-            ESTD 2024 • BENGAL'S FINEST HORROR
+            প্রগতি • কমিউনিটি • গল্প
           </motion.div>
         </motion.div>
       )}
