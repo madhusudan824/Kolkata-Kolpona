@@ -1,0 +1,79 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Hind+Siliguri:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-bengali: "Hind Siliguri", sans-serif;
+  --font-display: "Playfair Display", serif;
+  --font-mono: "Space Grotesk", monospace;
+
+  --color-primary: #991b1b;
+  --color-primary-light: #ef4444;
+  --color-secondary: #ea580c;
+  --color-accent: #f97316;
+  --color-dark: #0a0a0a;
+  --color-dark-lighter: #171717;
+  
+  --shadow-glow: 0 0 15px rgba(153, 27, 27, 0.5);
+  --shadow-glow-orange: 0 0 15px rgba(234, 88, 12, 0.5);
+}
+
+@layer base {
+  body {
+    @apply bg-dark text-gray-200 antialiased selection:bg-primary selection:text-white;
+    font-family: var(--font-sans);
+    cursor: none;
+  }
+}
+
+@layer components {
+  .glass {
+    @apply bg-white/5 backdrop-blur-md border border-white/10;
+  }
+  
+  .glow-text {
+    @apply text-white drop-shadow-[0_0_10px_rgba(255,255,255,0.5)];
+  }
+
+  .glow-text-red {
+    @apply text-primary-light drop-shadow-[0_0_10px_rgba(153,27,27,0.8)];
+  }
+
+  .btn-primary {
+    @apply px-8 py-3 bg-primary text-white rounded-full font-medium transition-all duration-300 hover:bg-primary-light hover:shadow-glow;
+  }
+
+  .section-title {
+    @apply text-4xl md:text-6xl font-display italic mb-8;
+  }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-dark;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-neutral-800 rounded-full hover:bg-neutral-700 transition-colors;
+}
+
+/* Ambient Dust Particles Animation */
+@keyframes float {
+  0% { transform: translateY(0) translateX(0); opacity: 0; }
+  50% { opacity: 0.5; }
+  100% { transform: translateY(-100vh) translateX(20px); opacity: 0; }
+}
+
+.particle {
+  position: fixed;
+  width: 2px;
+  height: 2px;
+  background: white;
+  pointer-events: none;
+  z-index: 1;
+  animation: float 20s linear infinite;
+}
