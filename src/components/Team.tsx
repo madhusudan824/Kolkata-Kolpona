@@ -1,55 +1,10 @@
 import { motion } from 'motion/react';
-import { Instagram, Twitter, Linkedin } from 'lucide-react';
-
-const team = [
-  {
-    name: 'Madhusudan Das',
-    role: 'CEO & Founder',
-    image: 'https://picsum.photos/seed/madhu/400/400',
-  },
-  {
-    name: 'Jayanta Basu',
-    role: 'CEO & Founder',
-    image: 'https://picsum.photos/seed/jayanta/400/400',
-  },
-  {
-    name: 'Kausitoki Dey',
-    role: 'PR Management',
-    image: 'https://picsum.photos/seed/kausitoki/400/400',
-  },
-  {
-    name: 'Sarindhri',
-    role: 'Voice Actor & Director',
-    image: 'https://picsum.photos/seed/sarindhri/400/400',
-  },
-  {
-    name: 'Deep',
-    role: 'Voice Actor',
-    image: 'https://picsum.photos/seed/deep/400/400',
-  },
-  {
-    name: 'Indro',
-    role: 'Voice Actor',
-    image: 'https://picsum.photos/seed/indro/400/400',
-  },
-  {
-    name: 'Samadrita',
-    role: 'Voice Actor',
-    image: 'https://picsum.photos/seed/samadrita/400/400',
-  },
-  {
-    name: 'Anwesha',
-    role: 'Voice Actor',
-    image: 'https://picsum.photos/seed/anwesha/400/400',
-  },
-  {
-    name: 'Srijan',
-    role: 'Voice Actor',
-    image: 'https://picsum.photos/seed/srijan/400/400',
-  },
-];
+import { useNavigate } from 'react-router-dom';
+import { teamData } from '../constants/teamData';
 
 export default function Team() {
+  const navigate = useNavigate();
+
   return (
     <section id="team" className="py-24 px-6 md:px-12 bg-white">
       <div className="text-center mb-16">
@@ -59,10 +14,11 @@ export default function Team() {
       </div>
 
       <div className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-y-12 gap-x-6 max-w-7xl mx-auto">
-        {team.map((member, i) => (
+        {teamData.map((member, i) => (
           <motion.div
-            key={i}
-            className="group text-center"
+            key={member.id}
+            className="group text-center cursor-pointer"
+            onClick={() => navigate(`/team/${member.id}`)}
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: i * 0.05, ease: [0.22, 1, 0.36, 1] }}

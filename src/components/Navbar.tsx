@@ -17,6 +17,7 @@ export default function Navbar() {
     { name: 'আপডেটস', href: '/#updates' },
     { name: 'প্রজেক্টস', href: '/#projects' },
     { name: 'ম্যাগাজিন', href: '/magazine' },
+    { name: 'অডিয়েন্স', href: '/audience' },
     { name: 'ক্রেডিট', href: '/credits' },
     { name: 'যোগাযোগ', href: '/#contact' },
   ];

@@ -50,14 +50,14 @@ export default function MagazinePage() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-3 md:grid-cols-2 lg:grid-cols-3 gap-2 md:gap-8">
           {editions.map((edition, i) => (
             <motion.div
               key={i}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: i * 0.1 }}
-              className="bg-white rounded-3xl overflow-hidden border border-slate-100 shadow-xl shadow-slate-200/50 group"
+              className="bg-white rounded-lg md:rounded-3xl overflow-hidden border border-slate-100 shadow-sm md:shadow-xl shadow-slate-200/50 group"
             >
               <div className="relative aspect-[3/4] overflow-hidden">
                 <img 
@@ -65,35 +65,35 @@ export default function MagazinePage() {
                   alt={edition.title}
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-8">
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-1 md:p-8">
                    <a 
                     href={edition.link}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-full py-4 bg-white text-slate-900 rounded-xl font-bold text-xs uppercase tracking-widest flex items-center justify-center gap-3"
+                    className="w-full py-1.5 md:py-4 bg-white text-slate-900 rounded-md md:rounded-xl font-bold text-[7px] md:text-xs uppercase tracking-widest flex items-center justify-center gap-1 md:gap-3"
                   >
-                    <BookOpen className="w-4 h-4" />
-                    পড়ুন (Google Drive)
+                    <BookOpen className="w-2.5 h-2.5 md:w-4 h-4" />
+                    <span className="hidden sm:inline">পড়ুন</span>
                   </a>
                 </div>
               </div>
               
-              <div className="p-8">
-                <div className="flex items-center gap-2 text-primary text-[10px] font-bold uppercase tracking-widest mb-2 font-bengali">
-                  <FileText className="w-3 h-3" />
-                  প্রকাশকাল: {edition.date}
+              <div className="p-1.5 md:p-8">
+                <div className="flex items-center gap-1 text-primary text-[5px] md:text-[10px] font-bold uppercase tracking-widest mb-1 md:mb-2 font-bengali">
+                  <FileText className="w-1.5 h-1.5 md:w-3 md:h-3" />
+                  <span className="hidden md:inline">প্রকাশকাল: </span>{edition.date}
                 </div>
-                <h3 className="text-2xl font-bold text-slate-900 mb-3 font-bengali">{edition.title}</h3>
-                <p className="text-sm text-slate-500 leading-relaxed font-bengali mb-6">
+                <h3 className="text-[9px] md:text-2xl font-bold text-slate-900 mb-0.5 md:mb-3 font-bengali truncate">{edition.title}</h3>
+                <p className="hidden md:block text-sm text-slate-500 leading-relaxed font-bengali mb-6">
                   {edition.description}
                 </p>
                 <a 
                   href={edition.link}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-2 text-primary hover:text-secondary text-xs font-bold uppercase tracking-widest transition-colors font-bengali"
+                  className="flex items-center gap-0.5 text-primary hover:text-secondary text-[7px] md:text-xs font-bold uppercase tracking-widest transition-colors font-bengali"
                 >
-                  বিস্তারিত দেখুন <ExternalLink className="w-3 h-3" />
+                  <span className="hidden md:inline">বিস্তারিত দেখুন </span><ExternalLink className="w-1.5 h-1.5 md:w-3 md:h-3" />
                 </a>
               </div>
             </motion.div>

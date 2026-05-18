@@ -1,31 +1,11 @@
 import { motion } from 'motion/react';
 import { Calendar, ArrowRight } from 'lucide-react';
-
-const updates = [
-  {
-    title: 'সিজন ২ ফাইনাল রেকর্ডিং',
-    date: '১৫ মে, ২০২৪',
-    description: 'আমরা ছেলেধরার সিজন ফাইনালের রেকর্ডিং শেষ পর্যায়ে আছি। একটি বড় চমকের জন্য তৈরি থাকুন!',
-    status: 'চলছে',
-    statusColor: 'bg-blue-100 text-blue-700',
-  },
-  {
-    title: 'নতুন ভয়েস আর্টিস্ট যোগদান',
-    date: '১০ মে, ২০২৪',
-    description: 'আমাদের টিমে নতুন সদস্যকে স্বাগত জানাই, যিনি আমাদের আসন্ন রহস্য সিরিজে একটি প্রধান চরিত্রে কণ্ঠ দেবেন।',
-    status: 'প্রকাশিত',
-    statusColor: 'bg-emerald-100 text-emerald-700',
-  },
-  {
-    title: 'লাইভ প্রশ্নোত্তর সেশন',
-    date: '১ জুন, ২০২৪',
-    description: 'সরাসরি ইউটিউবে আমাদের সাথে যুক্ত হন কলকাতা কল্পনার নির্মাতা এবং ভয়েস আর্টিস্টদের সাথে এক এক্সক্লুসিভ আড্ডায়।',
-    status: 'আসন্ন',
-    statusColor: 'bg-amber-100 text-amber-700',
-  },
-];
+import { useNavigate } from 'react-router-dom';
+import { updatesData } from '../constants/updatesData';
 
 export default function LatestUpdates() {
+  const navigate = useNavigate();
+
   return (
     <section id="updates" className="py-24 px-6 md:px-12 bg-slate-50">
       <div className="max-w-7xl mx-auto">
@@ -39,11 +19,12 @@ export default function LatestUpdates() {
           </button>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
-          {updates.map((update, i) => (
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+          {updatesData.map((update, i) => (
             <motion.div
-              key={i}
-              className="card-fresh p-6 md:p-8 flex flex-col h-full"
+              key={update.id}
+              className="card-fresh p-6 md:p-8 flex flex-col h-full cursor-pointer group"
+              onClick={() => navigate(`/update/${update.id}`)}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ delay: i * 0.1 }}
@@ -62,12 +43,12 @@ export default function LatestUpdates() {
               <h3 className="text-lg md:text-xl font-semibold mb-3 group-hover:text-primary transition-colors font-bengali">
                 {update.title}
               </h3>
-              <p className="text-slate-500 text-sm leading-relaxed mb-6 flex-grow font-bengali">
+              <p className="text-slate-500 text-sm leading-relaxed mb-6 flex-grow font-bengali line-clamp-3">
                 {update.description}
               </p>
               
               <button className="text-xs font-bold text-slate-400 hover:text-primary uppercase tracking-widest transition-colors flex items-center gap-2 font-bengali">
-                আরও পড়ুন
+                আরও পড়ুন <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </button>
             </motion.div>
           ))}
